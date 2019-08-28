@@ -14,7 +14,7 @@
         >
         </el-option>
       </el-select>
-      <el-button @click="picturesSort">按创建时间排序<span :class="['iconfont', ascending ? 'icon-paixu-sheng' : 'icon-paixujiang']"></span></el-button>
+      <el-button @click="sortingFilter">按创建时间排序<span :class="['iconfont', ascending ? 'icon-paixu-sheng' : 'icon-paixujiang']"></span></el-button>
     </div>
     <ul>
       <li
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { getPictures, selectionSort, picturesSort } from '../api/pictures'
+import { getPictures, selectClassify, picturesSort } from '../api/pictures'
 export default {
   name: 'PicturesShow',
   props: {
@@ -80,21 +80,25 @@ export default {
     }
   },
   methods: {
+    // 获取图片信息
     getPictures () {
       getPictures().then((res) => {
         this.pictures = res.data
       })
     },
+    // 分类
     changeClassify (value) {
       let params = {
         classifyId: value
       }
-      selectionSort(JSON.stringify(params)).then((res) => {
+      selectClassify(JSON.stringify(params)).then((res) => {
         this.pictures = res.data
       })
     },
-    picturesSort () {
+    // 排序筛选
+    sortingFilter () {
       this.ascending = !this.ascending
+      this.value = ''
       if (this.ascending) {
         this.changePicturesSort(0)
       } else {

@@ -1,11 +1,11 @@
-import request from '../untils/request'
+import request from '../utils/request'
 export function getPictures () {
   return request({
     url: `/pictures/list`,
     method: 'get'
   })
 }
-export function selectionSort (params) {
+export function selectClassify (params) {
   return request({
     url: `/pictures/classify`,
     method: 'post',

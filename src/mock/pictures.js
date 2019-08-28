@@ -66,7 +66,7 @@ export default {
     }
   },
   // 分类筛选
-  selectionSort: (config) => {
+  selectClassify: (config) => {
     let { classifyId } = JSON.parse(config.body)
     let newList = list.filter((element) => {
       return element.classifyId === classifyId
@@ -76,7 +76,7 @@ export default {
       data: newList
     }
   },
-  // 时间排序
+  // 排序筛选更新图片信息
   picturesSort: (config) => {
     let { sort } = JSON.parse(config.body)
     let newList = list.map((element) => {

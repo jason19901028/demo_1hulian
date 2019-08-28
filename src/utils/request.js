@@ -4,7 +4,7 @@ import {
 } from 'element-ui'
 import {
   getToken
-} from '../untils/auth'
+} from './auth'
 
 // 创建axios实例
 const service = axios.create({
