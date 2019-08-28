@@ -1,4 +1,5 @@
 import Mock from 'mockjs'
+import moment from 'moment'
 
 const list = []
 const count = 100
@@ -60,6 +61,33 @@ export default {
     return {
       result: 0,
       data: newList
+    }
+  },
+  picturesSort: (config) => {
+    let { sort } = JSON.parse(config.body)
+    let newList = list.map((element) => {
+      element.createTimeVaule = moment(element.createTime).valueOf()
+    })
+    let resultList = []
+    // sort为1降序，为0升序
+    if (sort === 1) {
+      newList.sort((a, b) => {
+        return b - a
+      })
+      resultList = newList.map((element) => {
+        delete element.createTimeVaule
+      })
+    } else if (sort === 0) {
+      newList.sort((a, b) => {
+        return a - b
+      })
+      resultList = newList.map((element) => {
+        delete element.createTimeVaule
+      })
+    }
+    return {
+      result: 0,
+      data: resultList
     }
   }
 }

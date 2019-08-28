@@ -3,7 +3,7 @@
     <div class="pictures-top">
       <el-select
         v-model="value"
-        placeholder="请选择"
+        placeholder="请选择分类"
         @change="changeClassify"
       >
         <el-option
@@ -14,7 +14,7 @@
         >
         </el-option>
       </el-select>
-      <el-button>按创建时间排序<span class="iconfont icon-paixu"></span></el-button>
+      <el-button @click="picturesSort">按创建时间排序<span :class="['iconfont', ascending ? 'icon-paixu-sheng' : 'icon-paixujiang']"></span></el-button>
     </div>
     <ul>
       <li
@@ -75,7 +75,8 @@ export default {
         value: 0,
         label: '其他分类'
       }],
-      value: ''
+      value: '',
+      ascending: false
     }
   },
   methods: {
@@ -91,6 +92,9 @@ export default {
       selectionSort(JSON.stringify(params)).then((res) => {
         this.pictures = res.data
       })
+    },
+    picturesSort () {
+      this.ascending = !this.ascending
     }
   },
   mounted () {
