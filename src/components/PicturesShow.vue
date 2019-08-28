@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { getPictures, selectionSort } from '../api/pictures'
+import { getPictures, selectionSort, picturesSort } from '../api/pictures'
 export default {
   name: 'PicturesShow',
   props: {
@@ -95,6 +95,19 @@ export default {
     },
     picturesSort () {
       this.ascending = !this.ascending
+      if (this.ascending) {
+        this.changePicturesSort(0)
+      } else {
+        this.changePicturesSort(1)
+      }
+    },
+    changePicturesSort (sort) {
+      let params = {
+        sort: sort
+      }
+      picturesSort(JSON.stringify(params)).then((res) => {
+        debugger
+      })
     }
   },
   mounted () {

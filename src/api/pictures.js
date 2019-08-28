@@ -12,3 +12,11 @@ export function selectionSort (params) {
     data: params
   })
 }
+
+export function picturesSort (params) {
+  return request({
+    url: `/pictures/sort`,
+    method: 'post',
+    data: params
+  })
+}
