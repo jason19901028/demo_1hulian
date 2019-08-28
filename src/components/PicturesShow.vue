@@ -13,7 +13,7 @@
         >
         </el-option>
       </el-select>
-      
+      <el-button>按创建时间排序<span class="iconfont icon-paixu"></span></el-button>
     </div>
     <ul>
       <li
@@ -93,6 +93,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .pictures-show {
+  width: 400px;
+  margin: 0 auto;
   ul li {
     display: flex;
     justify-content: center;
@@ -115,6 +117,11 @@ export default {
         justify-content: flex-start;
       }
     }
+  }
+  .pictures-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 }
 </style>
