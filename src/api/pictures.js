@@ -5,3 +5,10 @@ export function getPictures () {
     method: 'get'
   })
 }
+export function selectionSort (params) {
+  return request({
+    url: `/pictures/classify`,
+    method: 'post',
+    data: params
+  })
+}

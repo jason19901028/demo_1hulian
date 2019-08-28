@@ -4,6 +4,7 @@
       <el-select
         v-model="value"
         placeholder="请选择"
+        @change="changeClassify"
       >
         <el-option
           v-for="item in options"
@@ -46,7 +47,7 @@
 </template>
 
 <script>
-import { getPictures } from '../api/pictures'
+import { getPictures, selectionSort } from '../api/pictures'
 export default {
   name: 'PicturesShow',
   props: {
@@ -56,22 +57,22 @@ export default {
     return {
       pictures: [],
       options: [{
-        value: '分类1',
+        value: 1,
         label: '分类1'
       }, {
-        value: '分类2',
+        value: 2,
         label: '分类2'
       }, {
-        value: '分类3',
+        value: 3,
         label: '分类3'
       }, {
-        value: '分类4',
+        value: 4,
         label: '分类4'
       }, {
-        value: '分类5',
+        value: 5,
         label: '分类5'
       }, {
-        value: '其他分类',
+        value: 0,
         label: '其他分类'
       }],
       value: ''
@@ -80,6 +81,14 @@ export default {
   methods: {
     getPictures () {
       getPictures().then((res) => {
+        this.pictures = res.data
+      })
+    },
+    changeClassify (value) {
+      let params = {
+        classifyId: value
+      }
+      selectionSort(JSON.stringify(params)).then((res) => {
         this.pictures = res.data
       })
     }

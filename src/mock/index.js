@@ -7,5 +7,6 @@ Mock.setup({
 })
 
 Mock.mock('/pictures/list', 'get', picturesApi.getPictures)
+Mock.mock('/pictures/classify', 'post', picturesApi.selectionSort)
 
 export default Mock
