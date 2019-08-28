@@ -106,7 +106,7 @@ export default {
         sort: sort
       }
       picturesSort(JSON.stringify(params)).then((res) => {
-        debugger
+        this.pictures = res.data
       })
     }
   },

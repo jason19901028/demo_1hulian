@@ -47,12 +47,25 @@ for (let i = 0; i < count; i++) {
 }
 
 export default {
+  // 获取图片信息
   getPictures: () => {
+    let newList = list.map((element) => {
+      element.createTimeVaule = moment(element.createTime).valueOf()
+      return element
+    })
+    newList.sort((a, b) => {
+      return b.createTimeVaule - a.createTimeVaule
+    })
+    let resultList = newList.map((element) => {
+      delete element.createTimeVaule
+      return element
+    })
     return {
       result: 0,
-      data: list
+      data: resultList
     }
   },
+  // 分类筛选
   selectionSort: (config) => {
     let { classifyId } = JSON.parse(config.body)
     let newList = list.filter((element) => {
@@ -63,26 +76,30 @@ export default {
       data: newList
     }
   },
+  // 时间排序
   picturesSort: (config) => {
     let { sort } = JSON.parse(config.body)
     let newList = list.map((element) => {
       element.createTimeVaule = moment(element.createTime).valueOf()
+      return element
     })
     let resultList = []
     // sort为1降序，为0升序
     if (sort === 1) {
       newList.sort((a, b) => {
-        return b - a
+        return b.createTimeVaule - a.createTimeVaule
       })
       resultList = newList.map((element) => {
         delete element.createTimeVaule
+        return element
       })
     } else if (sort === 0) {
       newList.sort((a, b) => {
-        return a - b
+        return a.createTimeVaule - b.createTimeVaule
       })
       resultList = newList.map((element) => {
         delete element.createTimeVaule
+        return element
       })
     }
     return {
